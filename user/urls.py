@@ -2,6 +2,6 @@ from django.conf.urls import url
 from user import views
 
 urlpatterns = [
-    url(r'^register$',views.register),
-    url(r'^login$',views.login),
+    url(r'^register$',views.user_register),
+    url(r'^login$',views.user_login),
 ]
