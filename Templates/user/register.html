@@ -9,20 +9,20 @@
 <h1>Sign Up</h1>
     </div>
     <div class="main">
-
-
-    <label>Name
-      <input type="text" placeholder="Enter Name" />
-    </label>
-    <label>Email Address
-      <input type="email"  placeholder="Enter Email" />
-    </label>
-    <label>Password
-      <input type="password" placeholder="Enter password" />
-    </label>
-    <label>Mobile Number
-      <input type="text"  placeholder="mobile number" />
-    </label>
+      <form method="POST" >
+        {% csrf_token %}
+    <label for="Name">Name</label>
+      <input type="text" placeholder="Enter Name" name="Name">
+    
+    <label for="email">Email Address</label>
+      <input type="email" name="email" placeholder="Enter Email" >
+    
+    <label for="passwd">Password</label>
+      <input type="password" name="passwd" placeholder="Enter password" >
+    
+    <label for="mobile">Mobile Number</label>
+      <input type="text" name="mobile" placeholder="mobile number" />
+    
     <!-- <p>
       <label for="id_select">Select:</label>
        <input type="checkbox" name="select" required id="id_select">
@@ -93,6 +93,8 @@
 
 
     <button type="submit" name="button">Sign Up</button>
+  </form>
+  </div>
     <!-- </div>
   </div>
   <div class="login">
