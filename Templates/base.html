@@ -20,8 +20,13 @@
     </ul>
     <a href="#"><ion-icon name="cart" id="cart"></ion-icon></a>
     <div id="sign" >
+      {% if user.is_authenticated %}
+        <a>Hello,{{ user.username }} | </a>
+        <a href="/user/logout">Logout</a>
+      {% else %}
       <a href="/user/register">SIGN UP | </a>
       <a href="/user/login">LOGIN</a>
+      {% endif %}
     </div>
   </nav>
 

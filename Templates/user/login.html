@@ -55,18 +55,21 @@
     </style>
     <title></title>
   
+    <form method='POST' >
+      {%csrf_token%}
   <div class="login">
       <div class="head">
         <h1>LOGIN</h1>
       </div>
         <div class="main">
-      <label>Email Address
-        <input type="email"  placeholder="Enter Email" />
+      <label>Username
+        <input type="text"  placeholder="Enter username" name='username'>
       </label>
       <label>Password
-        <input type="password" placeholder="Enter password" />
+        <input type="password" placeholder="Enter password" name='password'>
       </label>
       <button type="submit" name="button">Log in</button>
     </div>
   </div>
+</form>
 {% endblock %}
