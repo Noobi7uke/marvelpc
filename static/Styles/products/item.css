@@ -1,0 +1,96 @@
+body {
+  background:linear-gradient(to right,blue, red  );
+}
+.main{
+    position: relative;
+
+}
+.img1{
+    height: 400px;
+    width: 420px;
+}
+.left{
+    position: absolute;
+    top: 100px;
+    left: 10%;
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 15px 15px 5px black;
+    padding-right: 40px;
+    height: 400px;
+
+  }
+.right{
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  background-color: white;
+  padding: 10px;
+  height: 500px;
+
+}
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+body {
+  font-family: 'Roboto Condensed',sans-serif;
+  margin:auto;
+  /*background-color: rgba(80, 80, 80, 0.192);
+*/}
+
+
+#nav1 {
+
+    /* background: #077; */
+    background: black;
+    /* border: 2px solid white; */
+
+}
+#nav1 ul {
+  display: inline-block;
+  list-style: none;
+  /* width:130px; */
+  /* margin:0px; */
+  padding: 0px;
+}
+#nav1 li {
+    /* float:left; */
+    /* width:40px; */
+    display: inline-block;
+    padding: 10px;
+    font-weight:bold;
+   /* border:1px solid black; */
+}
+#cart {
+  float:right;
+    margin-top:5px;
+    padding:10px;
+    font-size: 40px;
+}
+#sign {
+  /* display: inline-block; */
+  float:right;
+  margin-top:26px;
+}
+a {
+  color:white;
+  text-decoration: none;
+
+}
+.right li{
+  margin: 4px;
+}
+.mid{
+  transform: rotate(90deg);
+  height: 10px;
+  background-color: black;
+  /* position: absolute; */
+  /* top: 100px; */
+}
+button{
+  border:2px solid transparent;
+  border-radius: 2px;
+  background: #ff07076b;
+    color:white;
+  font:20px solid Tahoma;
+  padding:10px;
+}

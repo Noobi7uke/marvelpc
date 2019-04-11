@@ -7,6 +7,24 @@ def index(request):
 
 def comp(request,comp):
     companies = sql_script.distinct_companies(comp)
-    desc=sql_script.intro(comp)
-    return render(request,'products/products.html',{'companies':companies,'components':desc})
-    
+    companies_chosen = {}
+    for c in companies:
+        companies_chosen[c]=False
+    if request.method=='POST':
+        companies_required = []
+        for i in companies:
+            if request.POST.get(i) == 'on':
+                companies_required.append(i)
+                companies_chosen[i]=True
+        desc = sql_script.intro(comp,companies=companies_required)
+    else:
+        desc=sql_script.intro(comp)
+    dic = {'companies':companies,'components':desc}
+    dic.update(companies_chosen)
+    print(dic)
+    return render(request,'products/products.html',dic)
+
+def item(request,comp,product):
+    dic = sql_script.sel_item(product)
+    print(dic)
+    return render(request,'products/item.html',dic)

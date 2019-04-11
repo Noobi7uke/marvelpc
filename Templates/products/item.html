@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block base_block %}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static '/Styles/products/item.css'%}">
+    <script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+
+    <div class="main">
+        <div class="left">
+            <img src="/media/products/{{id}}.jpg" class="img1">
+        </div>
+
+        <div class="right">
+            <h1 class="pname1">{{name}}</h1>
+            <hr>
+            <h3 class="price1">Price :- ₹{{MRP}} </h3>
+            <h3 class="type1">Type :- {{type}}</h3>
+			<h3 class="comp1">Company :- {{company}}</h3>
+            <h3 class="specs1">Description :-</h3>
+            <p>{{ desc }}</p>
+            <!-- <h3>
+                {% for i in specs %}
+                
+                {% endfor %}
+    
+            </h3> -->
+            
+            
+            <form action="index.html" method="post">
+            <button type="submit" name="addToCart">Add to Cart</button>
+            <button type="submit" name="removeFromCart">Remove from Cart</button>
+            <button type="submit" name="buyNow">Buy Now</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

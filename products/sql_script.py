@@ -1,5 +1,5 @@
 from mysql import connector
-
+from json import loads
 def insert_one(sql,val):
     db =connector.connect(user="marvel",passwd="marvel123",host="localhost",database = "marvel")
     cur = db.cursor()
@@ -15,8 +15,14 @@ def  select(sql,val):
     db.close()
     return D
 
-def intro(type):
-    sql = "SELECT Product_ID,Product_Name,MRP,Company FROM products WHERE Type=%s"
+def intro(type,companies=[]):
+    if companies==[]:
+        sql = "SELECT Product_ID,Product_Name,MRP,Company FROM products WHERE Type=%s"
+    else:
+        sql = "SELECT Product_ID,Product_Name,MRP,Company FROM products WHERE Type=%s AND Company in {}".format(companies)
+        sql = sql.replace("[",'(')
+        sql = sql.replace("]",')')
+        print(sql)
     val=(type,)
     A = select(sql,val)
     desc = []
@@ -24,7 +30,20 @@ def intro(type):
         desc.append({'id':i[0],'name':i[1],'MRP':i[2],'company':i[3]})
     return desc
 
+def sel_item(name):
+    sql = "SELECT * FROM products WHERE Product_Name = %s"
+    val=(name,)
+    A=select(sql,val)
+    print(A)
+    dic={}
+    spec = A[0][4]
+    spec=spec.split(',')
+    
+    
 
+    if len(A)==1:
+        dic = {'id':A[0][0],'name':A[0][1],'MRP':A[0][2],'company':A[0][3],'specs':spec,'desc':A[0][5],'type':A[0][6]}
+    return dic
 
 def distinct_companies(type):
     sql = "SELECT DISTINCT Company FROM products WHERE Type=%s"
