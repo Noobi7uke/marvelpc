@@ -1,5 +1,8 @@
 from django.conf.urls import url,include
 from products import views
+from django.urls import path
 urlpatterns = [
-    url(r'^$',views.index,name='index'),
+    path('',views.index,name="index"),
+    path('main/',views.index,name='index'),
+    path('<str:comp>/',views.comp,name="component"),
 ]

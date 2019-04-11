@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block base_block %}
+<link rel="stylesheet" href="{% static '/Style/products/comp.css' %}">
+<script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>    
+    <!-- <div id="aside-div"> -->
+      <aside class="process">
+          <div class="Brand">
+          <span><b>Brand</b></span>
+          <br />
+          {% for c in companies %}
+          <input type="checkbox" name="{{ c }}" /> {{c}} <br />
+          {% endfor %}
+        </div>
+      </aside>
+
+      <div class="pro">
+        {% for c in components %}
+        <article class="{{ c.company }}">
+          <!-- <div class="article-image" style="background:url('processor1.webp')" ></div> -->
+          <div class="image"  > <img src="/media/products/{{c.id}}.jpg" height="300" width="365" /></div>
+          <div class="content">
+              <p>
+            <br />
+            <br />
+            <br />
+          </p>
+          <h3> {{ c.name }} 
+            </h3>
+          <p>
+            by {{c.company }}<br />{{ c.MRP }}<br /> Get it by Tuesday, March 19 <br />
+          </p>
+          <!-- <br />  More Buying Choices <br /> $625 (6 new offers)</p> -->
+                </div>
+          </article>
+          
+          {% endfor %}
+
+
+      </div>
+
+
+    <!-- </div> -->
+
+
+{% endblock %}

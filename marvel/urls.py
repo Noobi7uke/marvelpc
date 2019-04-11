@@ -16,11 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url,include
 from home import views
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
     url(r'^$',views.index),
+    url(r'^admin/', admin.site.urls),
     url(r'^home/',include('home.urls')),
     url(r'^product/',include('products.urls')),
     url(r'^user/',include('user.urls')),
 
-]
+]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+body {
+  font-family: 'Roboto Condensed',sans-serif;;
+  margin:auto;
+  /* background:#0aeada; */
+  background: white;
+}
+
+#nav1 {
+
+    /* background: #077; */
+    width: 100%;
+    background: black;
+    /* border: 2px solid white; */
+
+}
+#nav1 ul {
+  display: inline-block;
+  list-style: none;
+  /* width:130px; */
+  /* margin:0px; */
+  padding: 0px;
+}
+#nav1 li {
+    /* float:left; */
+    /* width:40px; */
+    display: inline-block;
+    padding: 10px;
+    font-weight:bold;
+   /* border:1px solid black; */
+}
+#cart {
+  float:right;
+    margin-top:5px;
+    padding:10px;
+    font-size: 40px;
+}
+#sign {
+  /* display: inline-block; */
+  float:right;
+  margin-top:26px;
+}
+#nav1 a {
+  color:#e23333;
+  text-decoration: none;
+
+}
+
+
+.process {
+  float: left;
+
+   width:150px;
+  /* height: 1000px; */
+   /* border: 1px grey solid; */
+  /*box-shadow: 1px 0px 6px; */
+  /* text-align: center; */
+}
+.Brand {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+span {
+  margin-left:4px;
+}
+.pro {
+
+   width:1071px;
+
+  float:left;
+
+}
+article {
+  width: 100% !important;
+   display:inline-block !important;
+  padding: 20px;
+  margin:0px;
+  margin-top: 0px;
+  text-align: center;
+  border:1px solid grey;
+  border-top: 0px;
+  border-right: none;
+  /* box-shadow: 5px 5px 10px 3px; */
+}
+/* .article-image {
+float: left;
+  width:35%;
+  height:300px;
+  background-size: cover !important;
+  background-position: center !important;
+
+
+} */
+.content {
+  padding-left: 10px;
+  text-align:left;
+  width:63%;
+  float: left;
+}
+h3 {
+  color:orange;
+}
+.image {
+  float: left;
+
+}
