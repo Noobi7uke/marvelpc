@@ -3,6 +3,8 @@
 {% load staticfiles %}
 
 {% block base_block %}
+
+
 <link rel="stylesheet" href="{% static '/Styles/products/comp.css' %}">
 <script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>    
     <!-- <div id="aside-div"> -->
@@ -10,25 +12,16 @@
           <div class="Brand">
           <span><b>Brand</b></span>
           <br />
-          <form method="POST">
-            {% csrf_token %}
-          {% for c in companies %}          
-          <input type="checkbox"  name="{{ c }}" /> {{c}} <br />
-          
-          {% endfor %}
-
-            <button type="submit">Submit</button>
-        </form>
         </div>
       </aside>
 
       <div class="pro">
         {% for c in components %}
         
-        <article class="{{ c.company }}">
+        <article class="{{ c.Company }}">
           <!-- <div class="article-image" style="background:url('processor1.webp')" ></div> -->
-          <a href="{{c.name}}">
-          <div class="image"  > <img src="/media/products/{{c.id}}.jpg" height="300" width="365" /></div>
+          <a href="{{c.Name}}">
+          <div class="image"  > <img src="/media/products/{{c.ID}}.jpg" height="300" width="365" /></div>
           <div class="content">
               <p>
             <br />
@@ -36,22 +29,25 @@
             <br />
           </p>
           
-          <h3> {{ c.name }} 
+          <h3> {{ c.Name }} 
             </h3>
           <p>
-            by {{c.company }}<br />₹{{ c.Price }}<br /> Get it by Tuesday, March 19 <br />
+            by {{c.Company }}<br />₹{{ c.Price }}<br /> Get it by Tuesday, March 19 <br />
           </p>
           <!-- <br />  More Buying Choices <br /> $625 (6 new offers)</p> -->
                 </div>
+            <h3>Seller - {{ c.Seller_ID }} <small>{{ c.Seller_City}},{{ c.Seller_State }}</small></h3>
           </article>
           
           {% endfor %}
-
+          <h1>Total Price -  {{total }}</h1>
           </a>
       </div>
 
       
-    <!-- </div> -->
+
+
+
 
 
 {% endblock %}

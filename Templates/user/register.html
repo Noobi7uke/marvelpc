@@ -9,19 +9,19 @@
 <h1>Sign Up</h1>
     </div>
     <div class="main">
-      <form method="POST" >
+      <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 
-    <label for="Name">Name {% if errors.username %} *Username already exists {% endif %}</label>
-      <input type="text" placeholder="Enter Name" name="Name">
+    <label for="Name">Name {% if errors.username %} *invalid username or already exists {% endif %}</label>
+      <input type="text" placeholder="Enter Name"  name="Name">
 
-    <label for="email">Email Address{% if errors.email %} *Email already exists {% endif %}</label>
+    <label for="email">Email Address{% if errors.email %} *invalid email or already exists {% endif %}</label>
       <input type="email" name="email" placeholder="Enter Email" >
 
     <label for="passwd">Password</label>
       <input type="password" name="passwd" placeholder="Enter password" minlength="8" >
 
-    <label for="mobile">Mobile Number{% if errors.phone %} * This phone number already exists {% endif %}</label>
+    <label for="mobile">Mobile Number{% if errors.phone %} * invalid number or already exists {% endif %}</label>
       <input type="text" name="mobile" placeholder="mobile number" minlength="10" maxlength="10" />
 
     <!-- <p>
@@ -78,16 +78,9 @@
     <option value="31">31</option>
   </select>
   <select name="birth_year_year" required id="id_birth_year_year">
-    <option value="2019">2019</option>
-    <option value="2020">2020</option>
-    <option value="2021">2021</option>
-    <option value="2022">2022</option>
-    <option value="2023">2023</option>
-    <option value="2024">2024</option>
-    <option value="2025">2025</option>
-    <option value="2026">2026</option>
-    <option value="2027">2027</option>
-    <option value="2028">2028</option>
+    {% for i in range %}
+    <option value="{{i}}">{{i}}</option>
+    {% endfor %}
   </select>
 </p>
 <label for="address">Address</label>
@@ -100,8 +93,8 @@
     <option value="{{ st.code }}">{{st.name}}  {{st.code}}</option>
   {% endfor %}
 </select>
-
-
+ <!-- <label for="id_picture">Profile :</label>
+<input type="file" name="profile" accept="image/*" id="id_picture"> -->
 
     <button type="submit" name="button">Sign Up</button>
   </form>
