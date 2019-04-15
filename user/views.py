@@ -131,6 +131,7 @@ def cart(request):
     total_price = 0
     for i in components:
         total_price += float(i['Price'])
+    #print(components[1]['Name'])
     return render(request,'user/cart.html',{'components':components,'total':total_price})
 
 @login_required

@@ -30,14 +30,15 @@ def item(request,comp,product):
     seller = sql_script.get_seller(dic['id'])
     dic.update({'seller':seller})
     print(seller)
+    msg = ''
     if request.method=='POST':
         if not request.user.is_authenticated:
                 return redirect('/user/login')   
         else:
             if request.POST['add']=='cart':
-                sql_script.add_to_cart(str(request.user),request.POST['seller'])
+                msg = sql_script.add_to_cart(str(request.user),request.POST['seller'])
             
             elif request.POST['add'] == 'rig':
                 sql_script.add_to_rig(str(request.user),request.POST['seller'])
-            
+    dic.update({'msg':msg})
     return render(request,'products/item.html',dic)

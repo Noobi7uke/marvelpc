@@ -9,7 +9,17 @@
     <script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script src="{% static 'Script/test.js' %}"></script>
+    <style>
+        
+        .out {
+            display:none;
+        }
+        .outi{
+            display:block;
+        }
+    </style>
     <div class="main">
         <div class="left">
             <img src="/media/products/{{id}}.jpg" class="img1">
@@ -29,18 +39,27 @@
                 {% endfor %}
     
             </h3> -->
+            <h1>{{msg}}</h1>
             <form  method="post">
 
             <p>Choose Seller :-</p>
             {% for S in seller %}
-            <input type="radio" name="seller" required value="{{ S.Inventory_ID }}">{{S.Seller_Name}} <small>(Rating:{{S.Seller_Star}})</small> {{S.Seller_City}} {{S.Seller_State}} <br/>
-    
+           <div class="out"><input type="radio" name="seller"  required value="{{ S.Inventory_ID }}">{{S.Seller_Name}} <small>(Rating:{{S.Seller_Star}})</small> {{S.Seller_City}} {{S.Seller_State}} <br/></div>
+            
             {% endfor %}
                 {% csrf_token %}
+            <button class="butt">others</button>
+                 
+               
+                
+                <script src="test.js"></script>
+
             <button type="submit" value="cart" name="add">Add to Cart</button>
             <button type="submit" value="rig" name="add">Add to Rig</button>
             
+  
             </form>
+
         </div>
     </div>
 {% endblock %}

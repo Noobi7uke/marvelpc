@@ -66,10 +66,8 @@ CREATE TABLE IF NOT EXISTS Customer (
   Pincode VARCHAR(10) NOT NULL,
   Phone CHAR(10) NOT NULL,
   Orders INT NOT NULL DEFAULT 0,
-  PRIMARY KEY (Customer_ID),
+  PRIMARY KEY (Customer_ID)
 
-	FOREIGN KEY (Customer_ID)
-	REFERENCES auth_user(id)
 );
 
 
@@ -112,8 +110,8 @@ CREATE TABLE IF NOT EXISTS Rig (
 
 CREATE TABLE IF NOT EXISTS Orders (
   Order_ID INT(10) NOT NULL AUTO_INCREMENT,
-  Inventory_ID INT(6) NOT NULL,
-  Cart_ID INT(10) NOT NULL,
+  Inventory_ID INT(6)  NULL,
+  Cart_ID INT(10)  NULL,
   Rig_ID INT(6) NULL,
 	qty INT DEFAULT 1,
   PRIMARY KEY (Order_ID),
@@ -215,7 +213,7 @@ INSERT INTO Products VALUES
 	"{'Frequency speed':'Automatic Overclocking upto 1866MHz','CAS Latency':'CL9-CL11','Voltage':'start as low as 1.35V'}",
 	"HyperX HX318C10FWK2/8 is a kit of two 512M x 64-bit (4GB) DDR3-1866 CL10 SDRAM (Synchronous DRAM) 1Rx8 memory modules, based on eight 512M x 8-bit DDR3 FBGA component per module",
 	"8255.00");
-INSERT INTO products VALUES
+INSERT INTO Products VALUES
 	("2",
 	"Corsair",
 	"Corsair CMSO8GX3600 8GB Memory",

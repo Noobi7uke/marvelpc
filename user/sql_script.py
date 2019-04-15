@@ -72,21 +72,23 @@ def get_cart(user):
         return []
     else:
         cart_id = cart[0][0]
-        sql = "SELECT P.Product_ID,P.Product_Name,P.Company,P.Price,S.Name,S.City,S.State FROM Orders O JOIN Inventory I ON O.Inventory_ID = I.Inventory_ID JOIN Seller S ON S.Seller_ID = I.Seller_ID JOIN Products P ON P.Product_ID = I.Product_ID WHERE O.Cart_ID = %s"
+        sql = "SELECT P.Product_ID,P.Product_Name,P.Company,P.Price,S.Name,S.City,S.State,P.Types FROM Orders O JOIN Inventory I ON O.Inventory_ID = I.Inventory_ID JOIN Seller S ON S.Seller_ID = I.Seller_ID JOIN Products P ON P.Product_ID = I.Product_ID WHERE O.Cart_ID = %s"
         val=(cart_id,)
         tup = select(sql,val)
         lis = []
         for temp in tup:
             dic = {}
             dic['ID'] = temp[0]
-            dic['Seller_Name'] = temp[1]
+            dic['Name'] = temp[1]
             dic['Company'] = temp[2]
             dic['Price'] = temp[3]
             dic['Seller_ID'] = temp[4]
             dic['Seller_City'] = temp[5]
             dic['Seller_State'] = temp[6]
+            dic['Product_Types'] = temp[7]
             lis.append(dic)
         return lis
+
 
 
 def get_rig(user):
@@ -103,7 +105,7 @@ def get_rig(user):
         for temp in tup:
             dic = {}
             dic['ID'] = temp[0]
-            dic['Seller_Name'] = temp[1]
+            dic['Name'] = temp[1]
             dic['Company'] = temp[2]
             dic['Price'] = temp[3]
             dic['Seller_ID'] = temp[4]

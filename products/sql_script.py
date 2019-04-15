@@ -56,14 +56,24 @@ def add_to_cart(user,inven_id):
         add_to_cart(user,inven_id)
     else:
         cart_id = cart[0][0]
-        sql = "INSERT INTO orders (Inventory_ID,Cart_ID) VALUE (%s, %s)"
-        val = (inven_id,cart_id)
+        check = select("SELECT * FROM Orders WHERE Inventory_ID= %s AND Cart_ID= %s",(inven_id,cart_id))
+        if len(check)==0:
+            sql = "INSERT INTO orders (Inventory_ID,Cart_ID) VALUE (%s, %s)"
+            val = (inven_id,cart_id)
         # test = select("SELECT ")
-        try:
-            insert_one(sql,val)   
-            print("inserted to cart")
-        except:               
-            print("ERROR")
+            try:
+                insert_one(sql,val)   
+                # print("inserted to cart")
+                msg = "Inserted to cart"
+            except:               
+                # print("ERROR")
+                msg = "Error in Inserting to Cart"
+        else:
+            msg = "Already in Cart"
+        
+    return msg
+
+
 
 
 def add_to_rig(user,inven_id):
