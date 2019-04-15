@@ -26,7 +26,7 @@ MEDIA_DIR = os.path.join(BASE_DIR,'Media')
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0lrq_tawzz0n-p#ypw@)@^@@!0@44yfv2tis+fr@@tq)g8nz(z'
+SECRET_KEY = '*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -85,9 +85,9 @@ WSGI_APPLICATION = 'marvel.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'marvel',
-        'USER' : 'marvel',
-        'PASSWORD' : 'marvel123',
+        'NAME': '*',
+        'USER' : '*',
+        'PASSWORD' : '*',
         'HOST' : 'localhost',
         'PORT' : '3306',
 
