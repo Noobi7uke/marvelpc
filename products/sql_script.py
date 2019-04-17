@@ -43,7 +43,7 @@ def sel_item(name):
         dic = {'id':A[0][0],'name':A[0][2],'Price':A[0][6],'company':A[0][1],'specs':spec,'desc':A[0][5],'type':A[0][3]}
     return dic
 
-def add_to_cart(user,inven_id):
+def add_to_cart(user,inven_id,qty=1):
     sql = "SELECT Cart_ID FROM Customer JOIN Cart ON Customer.Customer_ID=Cart.Customer WHERE Customer.Name = %s"
     val=(user,)
     cart = select(sql,val)
@@ -58,16 +58,16 @@ def add_to_cart(user,inven_id):
         cart_id = cart[0][0]
         check = select("SELECT * FROM Orders WHERE Inventory_ID= %s AND Cart_ID= %s",(inven_id,cart_id))
         if len(check)==0:
-            sql = "INSERT INTO orders (Inventory_ID,Cart_ID) VALUE (%s, %s)"
-            val = (inven_id,cart_id)
+            sql = "INSERT INTO Orders (Inventory_ID,Cart_ID,qty) VALUE (%s, %s,%s)"
+            val = (inven_id,cart_id,qty)
         # test = select("SELECT ")
-            try:
-                insert_one(sql,val)   
+            insert_one(sql,val)   
                 # print("inserted to cart")
-                msg = "Inserted to cart"
-            except:               
-                # print("ERROR")
-                msg = "Error in Inserting to Cart"
+            insert_one("UPDATE Customer SET Orders = Orders + %s WHERE Name = %s",(qty,user))
+            msg = "Inserted to cart"
+            # except:               
+            #     # print("ERROR")
+            #     msg = "Error in Inserting to Cart"
         else:
             msg = "Already in Cart"
         
@@ -76,24 +76,24 @@ def add_to_cart(user,inven_id):
 
 
 
-def add_to_rig(user,inven_id):
-    sql = "SELECT R.Rig_ID FROM Rig R JOIN Customer C ON R.Customer=C.Customer_ID WHERE C.Name = %s "
-    val = (user,)        
-    temp = select(sql,val)
-    if  len(temp)==0:
-        sql = "INSERT INTO Rig (Customer) VALUE ((SELECT Customer_ID FROM Customer WHERE Name =%s ))"
-        val = (user,)
-        insert_one(sql,val)
-        add_to_rig(user,inven_id)
-    else:
-        rig_id = temp[0][0]
-        sql = "INSERT INTO orders (Inventory_ID,Rig_ID) VALUE (%s,%s)"
-        val = (inven_id,rig_id)
-        try:
-            insert_one(sql,val)
-            print("inserted to rig")
-        except:
-            print("ERROR")
+# def add_to_rig(user,inven_id):
+#     sql = "SELECT R.Rig_ID FROM Rig R JOIN Customer C ON R.Customer=C.Customer_ID WHERE C.Name = %s "
+#     val = (user,)        
+#     temp = select(sql,val)
+#     if  len(temp)==0:
+#         sql = "INSERT INTO Rig (Customer) VALUE ((SELECT Customer_ID FROM Customer WHERE Name =%s ))"
+#         val = (user,)
+#         insert_one(sql,val)
+#         add_to_rig(user,inven_id)
+#     else:
+#         rig_id = temp[0][0]
+#         sql = "INSERT INTO orders (Inventory_ID,Rig_ID) VALUE (%s,%s)"
+#         val = (inven_id,rig_id)
+#         try:
+#             insert_one(sql,val)
+#             print("inserted to rig")
+#         except:
+#             print("ERROR")
     
 
 

@@ -8,12 +8,12 @@
 <link rel="stylesheet" href="{% static '/Styles/products/comp.css' %}">
 <script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>    
     <!-- <div id="aside-div"> -->
-      <aside class="process">
+      <!-- <aside class="process">
           <div class="Brand">
           <span><b>Brand</b></span>
           <br />
-        </div>
-      </aside>
+        </div> -->
+      <h1>Total Orders - {{C_Orders}}</h1> 
 
       <div class="pro">
         {% for c in components %}
@@ -28,11 +28,11 @@
             <br />
             <br />
           </p>
-          
+          <h3>Quantity - {{c.in_qty}}</h3>
           <h3> {{ c.Name }} 
             </h3>
           <p>
-            by {{c.Company }}<br />₹{{ c.Price }}<br /> Get it by Tuesday, March 19 <br />
+            by {{c.Company }}<br />₹{{ c.Price }}<br /> <br />
           </p>
           <!-- <br />  More Buying Choices <br /> $625 (6 new offers)</p> -->
                 </div>

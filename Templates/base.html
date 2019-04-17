@@ -5,6 +5,7 @@
     
     {% load staticfiles %}
     
+    
     <link rel="stylesheet" href="{% static 'Styles\home\home.css' %}"/>
 
     <meta charset="UTF-8">
@@ -19,7 +20,7 @@
       <li> <a href="#">Support</a></li>
       {% if user.is_authenticated %}
       <li><a href="/user/cart">Cart</a></li>
-      <li><a href="/user/rig">Rig</a></li>
+      <li><a href="/rig/home">Rig</a></li>
       {% endif %}
     </ul>
     <a href="{%if user.is_authenticated %}/user/cart{%else%}/user/login{%endif%}"><ion-icon name="cart" id="cart"></ion-icon></a>
@@ -31,7 +32,7 @@
           <!-- <a>
           <img src="/media/profile/{{ user.id }}.jpg" width="30" alt="example">
         </a> -->
-        {{user.id}}
+        
       {% else %}
       <a href="/user/register">SIGN UP | </a>
       <a href="/user/login">LOGIN</a>

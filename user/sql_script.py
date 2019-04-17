@@ -29,6 +29,16 @@ def  select(sql,val):
     db.close()
     return D
     
+
+
+def user_info(request):
+    user = str(request.user)
+    sql = "SELECT C.Name,C.Email,C.State,C.Orders,C.birth_date,C.Phone,C.Pincode FROM Customer C WHERE C.Name = %s"
+    val = (user,)
+    q_result = select(sql,val)[0]
+    dic = {'C_Name':q_result[0],'C_Email':q_result[1],'C_State':q_result[2],'C_Orders':q_result[3],'C_birth_date':q_result[4],'C_Phone':q_result[5],'C_Pincode':q_result[6]}
+    return dic
+
 def check_for_user(name,email,errors):
     sql = "SELECT username,email FROM auth_user WHERE username = %s OR email = %s "
     val = (name,email)
@@ -72,7 +82,7 @@ def get_cart(user):
         return []
     else:
         cart_id = cart[0][0]
-        sql = "SELECT P.Product_ID,P.Product_Name,P.Company,P.Price,S.Name,S.City,S.State,P.Types FROM Orders O JOIN Inventory I ON O.Inventory_ID = I.Inventory_ID JOIN Seller S ON S.Seller_ID = I.Seller_ID JOIN Products P ON P.Product_ID = I.Product_ID WHERE O.Cart_ID = %s"
+        sql = "SELECT P.Product_ID,P.Product_Name,P.Company,P.Price,S.Name,S.City,S.State,P.Types,O.qty FROM Orders O JOIN Inventory I ON O.Inventory_ID = I.Inventory_ID JOIN Seller S ON S.Seller_ID = I.Seller_ID JOIN Products P ON P.Product_ID = I.Product_ID WHERE O.Cart_ID = %s"
         val=(cart_id,)
         tup = select(sql,val)
         lis = []
@@ -86,6 +96,7 @@ def get_cart(user):
             dic['Seller_City'] = temp[5]
             dic['Seller_State'] = temp[6]
             dic['Product_Types'] = temp[7]
+            dic['in_qty'] = temp[8]
             lis.append(dic)
         return lis
 

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'home',
     'products',
     'user',
+    'rig',
 ]
 
 MIDDLEWARE = [
@@ -85,9 +86,9 @@ WSGI_APPLICATION = 'marvel.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '*',
-        'USER' : '*',
-        'PASSWORD' : '*',
+        'NAME': 'marvel',
+        'USER' : 'marvel',
+        'PASSWORD' : 'marvel123',
         'HOST' : 'localhost',
         'PORT' : '3306',
 

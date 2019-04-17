@@ -40,7 +40,7 @@ body {
   margin-top:26px;
 }
 #nav1 a {
-  color:#e23333;
+  color:#fff;
   text-decoration: none;
 
 }
@@ -58,4 +58,12 @@ body {
   color: rgb(51, 49, 150);
   background-attachment: fixed;
   font-family: 'Luckiest Guy', cursive;
+}
+#nav1 a:hover {
+
+  color:red;
+   font-size:20px; 
+  border-bottom: 2px solid red;
+  transition: all 500ms;
+
 }

@@ -26,13 +26,16 @@
         </div>
 
         <div class="right">
+            
             <h1 class="pname1">{{name}}</h1>
             <hr>
-            <h3 class="price1">Price :- ₹{{Price}} </h3>
+            <h3 class="price1">Price :- ₹{{Price}}</h3>
             <h3 class="type1">Type :- {{type}}</h3>
 			<h3 class="comp1">Company :- {{company}}</h3>
             <h3 class="specs1">Description :-</h3>
             <p>{{ desc }}</p>
+            <form  method="post">
+            <label for="qty"> Quantity</label> <input type="number" min='1' placeholder="1" name="qty" id="">
             <!-- <h3>
                 {% for i in specs %}
                 
@@ -40,22 +43,23 @@
     
             </h3> -->
             <h1>{{msg}}</h1>
-            <form  method="post">
+            
 
             <p>Choose Seller :-</p>
             {% for S in seller %}
-           <div class="out"><input type="radio" name="seller"  required value="{{ S.Inventory_ID }}">{{S.Seller_Name}} <small>(Rating:{{S.Seller_Star}})</small> {{S.Seller_City}} {{S.Seller_State}} <br/></div>
+           <div {% if C_State == S.Seller_State %}class="in" {% else %}class="out"{% endif %}><input type="radio" name="seller"  required value="{{ S.Inventory_ID }}">{{S.Seller_Name}} <small>(Rating:{{S.Seller_Star}})</small> {{S.Seller_City}} {{S.Seller_State}} <br/></div>
             
             {% endfor %}
                 {% csrf_token %}
-            <button class="butt">others</button>
+            
                  
                
                 
-                <script src="test.js"></script>
+                <!-- <script src="test.js"></script> -->
+                <button class="butt" ><small>Sellers from other states</small></button>
 
             <button type="submit" value="cart" name="add">Add to Cart</button>
-            <button type="submit" value="rig" name="add">Add to Rig</button>
+           <!-- <button type="submit" value="rig" name="add">Add to Rig</button> -->
             
   
             </form>

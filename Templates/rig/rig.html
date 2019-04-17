@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block base_block %}
+
+
+<form method="POST">
+<div class="box processor" > 
+        <h1>Processor</h1>
+        {% if Processor %}
+
+        <h4>{{Processor.P_Name}} <small>{{Processor.P_Company}}</small> -- ₹{{Processor.P_Price}}</h4>
+        <img src="/media/products/{{Processor.P_ID}}.jpg" width="100" height="70" >
+        <a href="/rig/Processor/change">Change Processor</a>
+
+        {% else %}
+        <h3>No Processor Selected</h3>
+        <a href="/rig/Processor/add">Select Processor</a>
+        {% endif %}
+</div>
+<hr>
+<div class="box motherboard">
+        <h1>Motherboard</h1>
+        {% if Motherboard %}
+        <h4>{{Motherboard.P_Name}} <small>{{Motherboard.P_Company}}</small> -- ₹{{Motherboard.P_Price}}</h4>
+        <img src="/media/products/{{Motherboard.P_ID}}.jpg" width="100" height="70" >
+        <a href="/rig/Motherboard/change">Change Motherboard</a>
+        {% else %}
+        <h3>No Motherboard Selected</h3>
+        <a href="/rig/Motherboard/add">Select Motherboard</a>
+        {% endif %}
+</div>
+<hr>
+
+<div class="box ram">
+        {% if RAM %}
+        <h1>RAM</h1>
+        <h4>{{RAM.P_Name}} <small>{{RAM.P_Company}}</small> -- ₹{{RAM.P_Price}}</h4>
+        <img src="/media/products/{{RAM.P_ID}}.jpg" width="100" height="70" >
+        <a href="/rig/RAM/change">Change RAM</a>
+        {% else %}
+        <a href="/rig/RAM/add">Select RAM</a>
+        <h3>No RAM selected</h3>
+        {% endif %}
+</div>
+<hr>
+<div  class="box cabinet">
+        <h1>Cabinet</h1>
+        {% if Cabinet %}
+        <h4>{{Cabinet.P_Name}} <small>{{Cabinet.P_Company}}</small> -- ₹{{Cabinet.P_Price}}</h4>
+        <img src="/media/products/{{Cabinet.P_ID}}.jpg" width="100" height="70" >
+        <a href="/rig/Cabinet/change">Change Cabinet</a>
+        {% else %}
+        <h3>NO Cabinet Selected</h3>
+        <a href="/rig/Cabinet/add">Select Cabinet</a>
+        {% endif %}
+</div>
+<hr>
+<div class="box harddrive">
+        <h1>HardDrive</h1>
+        {% if Storage %}
+        <h4>{{Harddrive.P_Name}} <small>{{Harddrive.P_Company}}</small> -- ₹{{Harddrive.P_Price}}</h4>
+        <img src="/media/products/{{Storage.P_ID}}.jpg" width="100" height="70" >
+        <a href="/rig/Storage/change">Change Storage</a>
+        {% else %}
+        <h3>No Harddrive Selected</h3>
+        <a href="/rig/Storage/add">Select Drive Storage</a>
+        {% endif %}
+</div>
+<hr>
+<div class="box graphics">
+        <h1>Graphics Card</h1>
+        {% if Graphics %}
+        <h4>{{Graphics.P_Name}} <small>{{Graphics.P_Company}}</small> -- ₹{{Graphics.P_Price}}</h4>
+        <img src="/media/products/{{Graphics.P_ID}}.jpg" width="100" height="70" >
+        <a href="/rig/Graphics/change">Change Graphics</a>
+        {% else %}
+        <h3>No Graphics Card selected</h3>
+        <a href="/rig/Graphics/add">Select Graphics Card</a>
+        {% endif %}
+</div>
+
+</form>
+<hr size="6" color="black">
+<h1>Total   -  ₹{{total}}</h1>
+
+{% endblock %}

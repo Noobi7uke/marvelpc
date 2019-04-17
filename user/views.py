@@ -8,6 +8,7 @@ from django.contrib.auth import login,authenticate,logout
 
 
 from user import sql_script
+from user.sql_script import user_info
 # Create your views here.
 from json import loads
 from os import path
@@ -21,6 +22,9 @@ States_DIC = loads(open(file).read())
 
 
 from django.contrib.auth.models import User
+
+
+dic = {}
 
 def user_register(request):
     registered = False
@@ -74,11 +78,15 @@ def user_register(request):
             registered = True
             return HttpResponse("<p>You are registered</p><a href ='/'>Home</a> ")
         else:
-            return render(request,'user/register.html',{'States':States_DIC,'registered':registered,'errors':errors,'range':range(1900,2010)})    
+            dic = {'States':States_DIC,'registered':registered,'errors':errors,'range':range(1900,2010)}
+            dic.update(user_info(request))
+            return render(request,'user/register.html',dic)    
 
         
     else:
-        return render(request,'user/register.html',{'States':States_DIC,'registered':registered,'range':range(1900,2010)})
+        dic = {'States':States_DIC,'registered':registered,'range':range(1900,2010)}
+        dic.update(user_info(request))
+        return render(request,'user/register.html',dic)
 
 # def image(request):
 #     if request.method =='POST':
@@ -130,9 +138,12 @@ def cart(request):
     components = sql_script.get_cart(str(request.user))
     total_price = 0
     for i in components:
-        total_price += float(i['Price'])
+        total_price += float(i['Price'])*int(i['in_qty'])
     #print(components[1]['Name'])
-    return render(request,'user/cart.html',{'components':components,'total':total_price})
+    
+    dic = {'components':components,'total':total_price}
+    dic.update(user_info(request))
+    return render(request,'user/cart.html',dic)
 
 @login_required
 def rig(request):
@@ -140,4 +151,7 @@ def rig(request):
     total_price = 0
     for i in components:
         total_price += float(i['Price'])
-    return render(request,'user/cart.html',{'components':components,'total':total_price})
+
+    dic = {'components':components,'total':total_price}
+    dic.update(user_info(request))
+    return render(request,'user/rig.html',dic)
