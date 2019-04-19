@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block base_block %}
+
+
+<h1>{{ rig_msg }}</h1>
+<form  method="post">
+{% csrf_token %}
+<button type="submit" >Add</button>
+<br><br>
+{% for P in products %}
+<img src="/media/products/{{P.Product_ID}}.jpg" alt="{{P.Product_Name}}">
+<h1>{{P.Product_Name}} <small>Company : {{P.Product_Company}}</small></h1>
+
+<h3>Choose from sellers - </h3>
+<ul>
+{% for seller in P.Sellers %}
+<li>
+<label for="{{seller.Inven_ID}}">{{seller.Seller_Name}} <small>< State - {{seller.Seller_State}} ></State></small> </label>
+<input type="radio" name="inven" value = "{{seller.Inven_ID}}" id="{{seller.Inven_ID}}"> <br>
+</li>
+
+{% endfor %}
+</ul>
+<hr>
+{% endfor %}
+</form>
+
+{% endblock %}
