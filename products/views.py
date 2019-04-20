@@ -45,8 +45,11 @@ def item(request,comp,product):
             if 'add' in request.POST:
                 if request.POST['add']=='cart':
                     msg = sql_script.add_to_cart(str(request.user),request.POST['seller'],request.POST['qty'])
+                    if msg=="Inserted to cart":
+                        return redirect('/user/cart')
                 # elif request.POST['add'] == 'rig':
                 #     sql_script.add_to_rig(str(request.user),request.POST['seller'])
     dic.update({'msg':msg})
     return render(request,'products/item.html',dic)
+
 

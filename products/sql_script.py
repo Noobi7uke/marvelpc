@@ -17,9 +17,9 @@ def  select(sql,val):
 
 def intro(type,companies=[]):
     if companies==[]:
-        sql = "SELECT Product_ID,Product_Name,Price,Company FROM products WHERE Types=%s"
+        sql = "SELECT Product_ID,Product_Name,Price,Company FROM Products WHERE Types=%s"
     else:
-        sql = "SELECT Product_ID,Product_Name,Price,Company FROM products WHERE Types=%s AND Company in {}".format(companies)
+        sql = "SELECT Product_ID,Product_Name,Price,Company FROM Products WHERE Types=%s AND Company in {}".format(companies)
         sql = sql.replace("[",'(')
         sql = sql.replace("]",')')
         print(sql)
@@ -31,7 +31,7 @@ def intro(type,companies=[]):
     return desc
 
 def sel_item(name):
-    sql = "SELECT * FROM products WHERE Product_Name = %s"
+    sql = "SELECT * FROM Products WHERE Product_Name = %s"
     val=(name,)
     A=select(sql,val)
     print(A)
@@ -50,10 +50,10 @@ def add_to_cart(user,inven_id,qty=1):
     if len(cart)==0:
         user_id = select("SELECT Customer_ID FROM Customer WHERE Name = %s",(user,))[0][0]
         sql = "INSERT INTO Cart (Customer) VALUE (%s ) "
-        val=(user_id)
+        val=(user_id,)
         insert_one(sql,val)
         print("Entered....")
-        add_to_cart(user,inven_id)
+        return add_to_cart(user,inven_id)
     else:
         cart_id = cart[0][0]
         check = select("SELECT * FROM Orders WHERE Inventory_ID= %s AND Cart_ID= %s",(inven_id,cart_id))
@@ -118,7 +118,7 @@ def get_seller(pro_id):
 
 
 def distinct_companies(type):
-    sql = "SELECT DISTINCT Company FROM products WHERE Types=%s"
+    sql = "SELECT DISTINCT Company FROM Products WHERE Types=%s"
     val=(type,)
     A = select(sql,val)
     comp = []

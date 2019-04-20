@@ -79,13 +79,13 @@ def user_register(request):
             return HttpResponse("<p>You are registered</p><a href ='/'>Home</a> ")
         else:
             dic = {'States':States_DIC,'registered':registered,'errors':errors,'range':range(1900,2010)}
-            dic.update(user_info(request))
+            
             return render(request,'user/register.html',dic)    
 
         
     else:
         dic = {'States':States_DIC,'registered':registered,'range':range(1900,2010)}
-        dic.update(user_info(request))
+        
         return render(request,'user/register.html',dic)
 
 # def image(request):

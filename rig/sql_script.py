@@ -23,6 +23,9 @@ def get_rig(request):
     user = str(request.user)
     dic = {'Processor':None,'Motherboard':None,'RAM':None,'Storage':None,'Graphics':None,'Cabinet':None}
     user_id = select("SELECT Customer_ID FROM Customer WHERE Name = %s",(user,))[0][0]
+    if(select("SELECT count(*) FROM Rig R JOIN Customer C ON R.Customer = C.Customer_ID WHERE C.Name= %s",(user,))[0][0] == 0):
+        cust_id = select("SELECT Customer_ID FROM Customer WHERE Name = %s",(user,))
+        insert_one("INSERT INTO Rig (Customer) VALUE (%s) ",cust_id[0])
     sql = "SELECT P.Product_ID,P.Company,P.Product_Name,P.Types,P.Price,I.Inventory_ID  FROM rig R JOIN Orders O ON O.Rig_ID = R.Rig_ID JOIN Inventory I ON O.Inventory_ID = I.Inventory_ID JOIN Products P ON I.Product_ID = P.Product_ID WHERE R.Customer = %s "
     r_set = select(sql,(user_id,))
     total = 0
